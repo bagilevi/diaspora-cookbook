@@ -2,7 +2,6 @@ maintainer        "Levente Bagi"
 maintainer_email  "bagilevi@gmail.com"
 license           "Apache 2.0"
 description       "Sets up a Diaspora pod"
-long_description  IO.read(File.join(File.dirname(__FILE__), 'README'))
 version           "0.0.1"
 
 depends "java"
