@@ -7,7 +7,7 @@ Tested on Ubuntu 10.04.
 
 ## Easy setup
 
-See [diaspora-setup](https://github.com/bagilevi/diaspora-setup).
+See [diaspora-installer](https://github.com/bagilevi/diaspora-installer).
 
 ## Setup with Opscode Platform
 
