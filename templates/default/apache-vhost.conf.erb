@@ -1,0 +1,48 @@
+<VirtualHost *:<%= @enable_ssl ? 443 : 80 %>>
+  ServerName <%= @domain %>
+  ServerAlias www.<%= @domain %>
+
+  DocumentRoot <%= @public_dir %>
+
+  RewriteEngine On
+
+  <Proxy balancer://thinservers>
+    <% @ports.each do |port| -%>
+    BalancerMember http://<%="localhost:#{port}"%>
+    <% end -%>
+  </Proxy>
+
+  # Redirect all non-static requests to thin
+  RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_FILENAME} !-f
+  RewriteRule ^/(.*)$ balancer://thinservers%{REQUEST_URI} [P,QSA,L]
+
+  <Proxy *>
+    Order deny,allow
+    Allow from all
+  </Proxy>
+
+  # Custom log file locations
+  ErrorLog  /var/log/apache2/<%= @domain %>-error.log
+  CustomLog /var/log/apache2/<%= @domain %>-access.log combined
+
+  <% if @enable_ssl -%>
+  SSLEngine on
+  SSLProtocol all -SSLv2
+  SSLCipherSuite ALL:!ADH:!EXPORT:!SSLv2:RC4+RSA:+HIGH:+MEDIUM
+  SSLCertificateFile <%= @cert_location %>
+  SSLCertificateKeyFile <%= @key_location %>
+  SetEnvIf User-Agent ".*MSIE.*" nokeepalive ssl-unclean-shutdown
+  CustomLog /var/log/apache2/<%= @domain %>-ssl_request_log \
+    "%t %h %{SSL_PROTOCOL}x %{SSL_CIPHER}x \"%r\" %b"
+  <% end -%>
+</VirtualHost>
+
+<% if @enable_ssl -%>
+# Redirect http to https
+<VirtualHost *:80>
+  ServerName <%= @domain %>
+  ServerAlias www.<%= @domain %>
+  RewriteEngine On
+  RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+</VirtualHost>
+<% end -%>

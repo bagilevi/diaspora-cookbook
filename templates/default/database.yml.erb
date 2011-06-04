@@ -1,0 +1,13 @@
+# <%= @db.inspect %>
+# <%= @db.to_hash.inspect %>
+<%= @environment %>:
+  adapter: <%= @db[:adapter] || 'mysql2' %>
+  host: <%= @db[:host] || 'localhost' %>
+  database: <%= @db[:database] %>
+  username: <%= @db[:username] %>
+  password: <%= @db[:password] %>
+  encoding: <%= @db.has_key?(:encoding) ? @db[:encoding] : 'utf8' %>
+  collation: <%= @db.has_key?(:collation) ? @db[:collation] : 'utf8_bin' %>
+  reconnect: true
+
+

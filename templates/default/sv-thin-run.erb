@@ -1,0 +1,16 @@
+#!/bin/sh
+exec 2>&1
+echo "Starting..."
+
+sleep 1
+
+cd <%= @options[:dir] %>
+
+USER=diaspora
+
+exec chpst -u $USER \
+/usr/bin/env HOME=$CHDIR \
+bundle exec thin start \
+-e <%= @options[:platform] %> \
+-p <%= @options[:port] %> \
+2>&1

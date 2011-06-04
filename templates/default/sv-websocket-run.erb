@@ -1,0 +1,14 @@
+#!/bin/sh
+exec 2>&1
+echo "Starting..."
+
+sleep 1
+
+cd <%= @options[:dir] %>
+
+USER=diaspora
+
+exec chpst -u $USER \
+/usr/bin/env HOME=$CHDIR RAILS_ENV=<%= @options[:platform] %> \
+bundle exec ruby script/websocket_server.rb \
+2>&1
