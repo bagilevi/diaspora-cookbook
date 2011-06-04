@@ -24,12 +24,12 @@
     "description": "Sets up a Diaspora pod",
     "suggestions": {
     },
-    "long_description": "Diaspora Cookbook\n=================\n\nInstalling Diaspora on a server\n-------------------------------\n\nConfirmed to work on Ubuntu 10.04.\n\nGet a server or VPS and set up public key authentication for root.\n[TODO \"for a user that has sudo right\"]\n[TODO link to a guide]\n\nDo the steps in http://wiki.opscode.com/display/chef/Quick+Start\nincluding\n  knife bootstrap yourserver.com -r 'recipe[chef-client]' -x root\n  [TODO: knife bootstrap yourserver.com -r 'recipe[chef-client]' -x jim --sudo]\n\nType `knife node list` to check if the new node is there.\n\nThen run:\n\n  knife cookbook upload diaspora apt build-essential git java mysql apache2 openssl runit\n  knife node run_list add NODE 'recipe[diaspora]'\n\nOn the server as root:\n\nStop the chef-client service:\n\n  /etc/init.d/chef-client stop\n\nRun chef-client service manually:\n\n  /usr/bin/ruby1.8 /usr/bin/chef-client -P /var/run/chef/client.pid -l debug -c /etc/chef/client.rb\n\n",
+    "long_description": "",
     "conflicting": {
     },
     "recipes": {
       "diaspora": "Sets up all diaspora services on one node",
-      "diaspora::web_fontend": "Install the web front-end (nginx)",
+      "diaspora::web_fontend": "Install the web front-end (apache2)",
       "diaspora::database": "Installs database server (mysql-server)",
       "diaspora::web_backend": "Installs the web app servers (thin)"
     },
@@ -44,5 +44,5 @@
 
       ]
     },
-    "license": "Apache 2.0"
+    "license": "AGPL 3.0"
   }
