@@ -13,18 +13,18 @@ See [diaspora-installer](https://github.com/bagilevi/diaspora-installer).
 
 Follow the steps in http://wiki.opscode.com/display/chef/Quick+Start
 
-Inside the chefrepo run:
+Inside the chef-repo run:
 
-    knife cookbook vendor apache2
-    knife cookbook vendor apt
-    knife cookbook vendor build-essential
-    knife cookbook vendor git
-    knife cookbook vendor java
-    knife cookbook vendor openssl
-    knife cookbook vendor redis
-    knife cookbook vendor runit
-    curl -L https://github.com/downloads/bagilevi/mysql-cookbook/mysql.tgz | tar xzvf - -C cookbooks
-    curl -L https://github.com/downloads/bagilevi/diaspora-cookbook/diaspora.tgz | tar xzvf - -C cookbooks
+    knife cookbook site vendor apache2
+    knife cookbook site vendor apt
+    knife cookbook site vendor build-essential
+    knife cookbook site vendor git
+    knife cookbook site vendor java
+    knife cookbook site vendor openssl
+    knife cookbook site vendor redis
+    knife cookbook site vendor runit
+    git clone https://github.com/bagilevi/mysql-cookbook.git cookbooks/mysql
+    git clone https://github.com/bagilevi/diaspora-cookbook.git cookbooks/diaspora
 
 Type `knife node list` to check if the new node is there. The hostname here
 might be different from what you use to access it.
