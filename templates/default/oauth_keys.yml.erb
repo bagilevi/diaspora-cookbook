@@ -1,7 +1,6 @@
-twitter:
-  consumer_key: ""
-  consumer_secret: ""
-facebook:
-  app_id: ""
-  app_secret: ""
-
+<% @oauth_keys.each do |provider_name, provider_info| -%>
+<%= provider_name %>:
+<% provider_info.each do |key, value| -%>
+  <%= key %>: <%= value.inspect %>
+<% end -%>
+<% end -%>

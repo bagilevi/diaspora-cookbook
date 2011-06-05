@@ -78,6 +78,17 @@ template "#{deploy_dir}/shared/config/secret_token.rb" do
   notifies :run, restart_services
 end
 
+template "#{deploy_dir}/shared/config/oauth_keys.yml" do
+  source "oauth_keys.yml.erb"
+  owner "root"
+  group "diaspora"
+  mode 0640
+
+  variables :oauth_keys => node[:diaspora][:oauth_keys]
+
+  notifies :run, restart_services
+end
+
 deploy_revision deploy_dir do
   action node[:diaspora][:deploy_mode]
   repository node[:diaspora][:repository]
@@ -89,7 +100,7 @@ deploy_revision deploy_dir do
   symlinks = {
     "config/database.yml" => "config/database.yml",
     "config/application.yml" => "config/application.yml",
-    #"config/oauth_keys.yml" => "config/oauth_keys.yml",
+    "config/oauth_keys.yml" => "config/oauth_keys.yml",
     "config/secret_token.rb" => "config/initializers/secret_token.rb",
     "log" => "log",
   }
