@@ -89,6 +89,13 @@ template "#{deploy_dir}/shared/config/oauth_keys.yml" do
   notifies :run, restart_services
 end
 
+directory "#{deploy_dir}/shared/uploads" do
+  recursive true
+  owner "diaspora"
+  group "diaspora"
+  mode 0755
+end
+
 deploy_revision deploy_dir do
   action node[:diaspora][:deploy_mode]
   repository node[:diaspora][:repository]
@@ -102,6 +109,7 @@ deploy_revision deploy_dir do
     "config/application.yml" => "config/application.yml",
     "config/oauth_keys.yml" => "config/oauth_keys.yml",
     "config/secret_token.rb" => "config/initializers/secret_token.rb",
+    "uploads" => "public/uploads",
     "log" => "log",
   }
 
