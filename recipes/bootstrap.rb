@@ -20,6 +20,8 @@ package "psmisc"
 package "screen"
 package "bzip2"
 
+package "libsqlite3-dev" # Diaspora doesn't care if we want to use it with MySQL. He wants SQLite!
+
 # Jammer deps
 include_recipe "java" #package "openjdk-6-jdk"
 

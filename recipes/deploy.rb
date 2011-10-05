@@ -63,9 +63,9 @@ template "#{deploy_dir}/shared/config/application.yml" do
   owner "root"
   group "diaspora"
   mode 0640
-  variables :url => "http#{'s' if node[:diaspora][:enable_ssl]}://#{node[:diaspora][:domain]}",
-            :platform => node[:diaspora][:platform]
-
+  variables node[:diaspora].to_hash.merge(
+    :url => "http#{'s' if node[:diaspora][:enable_ssl]}://#{node[:diaspora][:domain]}"
+  ).tap{|v| puts v.to_yaml; puts "-" * 100 }
   notifies :run, restart_services
 end
 
@@ -131,7 +131,6 @@ deploy_revision deploy_dir do
       CODE
     end
   end
-  
 
   before_symlink do
     bash "package-assets" do

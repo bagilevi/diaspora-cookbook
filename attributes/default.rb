@@ -41,3 +41,29 @@ default[:diaspora][:database] = {
   :charset => 'utf8',
   :collation => 'utf8_bin',
 }
+
+default[:diaspora][:registrations_closed] = false
+default[:diaspora][:invites_off] = false
+default[:diaspora][:mail_from] = 'no-reply@example.org'
+default[:diaspora][:google_analytics] = false
+
+default[:diaspora][:admins] = [ 'example_user1dsioaioedfhgoiesajdigtoearogjaidofgjo' ]
+
+default[:diaspora][:mailer][:enabled] = false
+
+default[:diaspora][:oauth_keys] = {
+  :twitter => {
+    :consumer_key => '',
+    :consumer_secret => ''
+  },
+  :facebook => {
+    :app_id => '',
+    :app_secret => ''
+  },
+  :tumblr => {
+    :consumer_key => '',
+    :consumer_secret => ''
+  }
+}
+
+
