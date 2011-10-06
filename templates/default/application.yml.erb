@@ -45,6 +45,8 @@ defaults: &defaults
   socket_cert_chain_location: <%= "/etc/apache2/#{@domain}.crt".inspect %>
   socket_private_key_location: <%= "/etc/apache2/#{@domain}.key".inspect %>
 
+  ca_file: "/etc/ssl/certs/ca-certificates.crt"
+
   #
   # Federation setup
   #
