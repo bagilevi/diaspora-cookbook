@@ -137,8 +137,7 @@ deploy_revision deploy_dir do
       cwd release_path
       user "diaspora"
       code <<-CODE
-        bundle exec sass --update public/stylesheets/sass:public/stylesheets
-        bundle exec jammit
+        bundle exec rake assets:precompile
       CODE
     end
   end
