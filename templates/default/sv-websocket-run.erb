@@ -7,6 +7,7 @@ sleep 1
 cd <%= @options[:dir] %>
 
 USER=diaspora
+PATH="/usr/local/ruby/bin:$PATH"
 
 exec chpst -u $USER \
 /usr/bin/env HOME=$CHDIR RAILS_ENV=<%= @options[:platform] %> \
