@@ -127,7 +127,7 @@ deploy_revision deploy_dir do
       cwd release_path
       user "diaspora"
       code <<-CODE
-        bundle install --path #{deploy_dir}/shared/bundled_gems --without development,test
+        bundle install --path #{deploy_dir}/shared/bundled_gems --without development test heroku
       CODE
     end
   end
