@@ -12,7 +12,7 @@ PATH="/usr/local/ruby/bin:$PATH"
 exec chpst -u $USER \
 /usr/bin/env HOME=<%= @options[:dir] %> \
              RAILS_ENV=<%= @options[:platform] %> \
-             QUEUES=socket_webfinger,receive,receive_salmon,mail,http \
+             QUEUES=* \
 bundle exec rake resque:work \
 2>&1
 
