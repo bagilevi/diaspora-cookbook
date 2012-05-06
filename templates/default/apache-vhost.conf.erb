@@ -31,6 +31,7 @@
   SSLCipherSuite ALL:!ADH:!EXPORT:!SSLv2:RC4+RSA:+HIGH:+MEDIUM
   SSLCertificateFile <%= @cert_location %>
   SSLCertificateKeyFile <%= @key_location %>
+  SSLCertificateChainFile /etc/apache2/ssl/sub.class1.server.ca.pem
   SetEnvIf User-Agent ".*MSIE.*" nokeepalive ssl-unclean-shutdown
   CustomLog /var/log/apache2/<%= @domain %>-ssl_request_log \
     "%t %h %{SSL_PROTOCOL}x %{SSL_CIPHER}x \"%r\" %b"
