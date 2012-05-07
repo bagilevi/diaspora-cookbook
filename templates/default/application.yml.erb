@@ -51,7 +51,7 @@ defaults: &defaults
   open_invitations: <%= (!@invites_off).inspect %>
 
   #the 'admin' account for your pod... ie for jd.com, this is diasporahq
-  admin_account: ''
+  admin_account: <%= @admins.first.inspect %>
 
   #the default amount of invitiations for an invite link
   invite_count: 25
@@ -66,7 +66,10 @@ defaults: &defaults
   # (expressed as an array of Diaspora IDs)
   community_spotlight:
     - 'diasporahq@joindiaspora.com'
-  
+    <% @admins.each do |admin| -%>
+    - <%= "#{admin}@#{@url[%r{https?://([^/&\?]+)},1]}".inspect %>
+    <% end -%>
+
   # Email to send spotlight suggestions to
   spotlight_suggest_email: ''
 
