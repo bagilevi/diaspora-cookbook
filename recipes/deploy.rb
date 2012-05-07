@@ -137,7 +137,7 @@ deploy_revision deploy_dir do
       cwd release_path
       user "diaspora"
       code <<-CODE
-        bundle exec rake assets:precompile
+        bundle exec rake assets:precompile --trace
       CODE
     end
   end
